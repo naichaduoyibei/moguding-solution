@@ -41,15 +41,17 @@ class MogudingCommand extends Command
         $factory = new Client();
         $user = $factory->login ( config ( 'moguding.device' ), config ( 'moguding.phone' ), config ( 'moguding.password' ) );
         if ( empty ( $user ) ) {
+            $this->error ( '签到失败，用户名或密码错误。' );
             return;
         }
         $plans = $factory->getPlan ( $user [ 'token' ], $user [ 'userType' ], $user [ 'userId' ] );
         if ( empty ( $plans ) ) {
+            $this->error ( '签到失败，你没有签到计划。' );
             return;
         }
         foreach ( $plans as $plan ) {
             $factory->save ( $user [ 'token' ], $user [ 'userId' ], config ( 'moguding.province' ), config ( 'moguding.city' ), config ( 'moguding.address' ), config ( 'moguding.longitude' ), config ( 'moguding.latitude' ), config ( 'moguding.type' ), config ( 'moguding.device' ), $plan [ 'planId' ], config ( 'moguding.description' ) );
-            echo '签到成功！' . PHP_EOL;
+            $this->info ( '签到成功！' );
         }
     }
 }
