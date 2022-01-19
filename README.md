@@ -1,66 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 🍄蘑菇丁自动签到解决方案
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <img src="public/images/moguding.png" />
 </p>
 
-## About Laravel
+<h1 align="center">蘑菇丁自动签到</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 功能
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+到点 `上班` 和 `下班` 自动签到
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+上班签到时间 `8:30`
+下班签到时间 `17:30`
 
-## Learning Laravel
+如需修改时间
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+请修改 `.github/workflows` 文件夹中的 `START.yml` 文件 和 `END.yml` 文件
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`START.yml` 文件执行的是上班
 
-## Laravel Sponsors
+`END.yml` 文件执行的是下班
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+> 注：使用的是 UTC 时间。  
 
-### Premium Partners
+> 建议最好还是不要修改，除非你能解决代码冲突问题。  
+> 否则如果我更新了代码会给你带来一定的麻烦。
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+## 依赖
 
-## Contributing
+- [php-moguding-sdk](https://github.com/laradocs/php-moguding-sdk)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 用法
 
-## Code of Conduct
+1. Fork 项目
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+点击右上角的 Fork 按钮
 
-## Security Vulnerabilities
+项目将会到你的仓库
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![Fork](public/images/fork.png)
 
-## License
+2. 添加 Secrets
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+点击 `Settings` 按钮
+
+然后再点击 `Secrets` 按钮
+
+![Secrets](public/images/secrets.png)
+
+3. 添加参数
+
+点击 `New repository secret` 按钮添加参数
+
+需要添加以下参数：
+
+- DEVICE: android|ios
+- PHONE: 手机号码
+- PASSWORD: 密码
+- PROVINCE: 省(一定要写全，例如：江西省)
+- CITY: 市(一定要写全，例如：南昌市)
+- ADDRESS: 详细地址(可以登录蘑菇丁查看定位，把省和市去掉)
+- LONGITUDE: 经度
+- LATITUDE: 纬度
+
+如果你不知道经纬度
+
+可以打开这个网站：[经纬度查询 - 坐标拾取系统](https://jingweidu.bmcx.com)
+
+填写所在的 市(例如：南昌（不要带上后面的市）)，然后点击 查询 就好了。
+
+![Moguding](public/images/new-repository-secret.png)
+![add](public/images/add.png)
+
+填写完成后点击 `Add secret` 按钮即可。
+
+然后接着往下添加。
+
+5. 启用 Actions
+
+点击 `Actions` 按钮后默认会看见 `上班` 和 `下班`
+
+![Actions](public/images/actions.png)
+
+然后点击 `上班` 或 `下班`
+
+接着点击 `Run workflow(黑色)`
+
+然后再点击 `Run workflow(蓝色)`
+
+![Run](public/images/run.png)
+
+最后喝杯咖啡等待一下，直到棕色的点变成绿色
+
+![棕色](public/images/zongse.png)
+![蓝色](public/images/lvse.png)
+
+当然，还可以点击 `上班`，然后再 `build` 查看详情
+
+![done](public/images/done.png)
+
+同理，下班也是这么操作。
+
+如果有疑问或问题，可以在 [issues](https://github.com/laradocs/moguding-solution/issues) 中提出。
