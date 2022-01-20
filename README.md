@@ -1,7 +1,7 @@
 # 🍄蘑菇丁自动签到解决方案
 
 <p align="center">
-    <img src="public/images/moguding.png" />
+    <img style="width: 30%;" src="public/images/moguding.png" />
 </p>
 
 <h1 align="center">蘑菇丁自动签到</h1>
@@ -29,6 +29,16 @@
 ## 依赖
 
 - [php-moguding-sdk](https://github.com/laradocs/php-moguding-sdk)
+
+## 常见问题
+
+1. Error: Process completed with exit code 1.
+
+如果出现了上面的字样，那么就把当前的 `workflow` 删除重新执行。
+
+![exitcode1](public/images/exitcode1.png)
+
+暂时还没找到具体问题出在哪里。有可能是 `上网` 的问题(猜测)。
 
 ## 用法
 
