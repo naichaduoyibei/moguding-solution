@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use Laradocs\Moguding\Client;
 
@@ -41,13 +42,11 @@ class MogudingCommand extends Command
         $factory = new Client();
         $user = $factory->login ( config ( 'moguding.device' ), config ( 'moguding.phone' ), config ( 'moguding.password' ) );
         if ( empty ( $user ) ) {
-            $this->error ( '签到失败，用户名或密码错误。' );
-            return;
+            throw new Exception ( '签到失败，用户名或密码错误。' );
         }
         $plans = $factory->getPlan ( $user [ 'token' ], $user [ 'userType' ], $user [ 'userId' ] );
         if ( empty ( $plans ) ) {
-            $this->error ( '签到失败，你没有签到计划。' );
-            return;
+            throw new Exception ( '签到失败，你没有签到计划。' );
         }
         foreach ( $plans as $plan ) {
             $factory->save ( $user [ 'token' ], $user [ 'userId' ], config ( 'moguding.province' ), config ( 'moguding.city' ), config ( 'moguding.address' ), config ( 'moguding.longitude' ), config ( 'moguding.latitude' ), config ( 'moguding.type' ), config ( 'moguding.device' ), $plan [ 'planId' ], config ( 'moguding.description' ) );
