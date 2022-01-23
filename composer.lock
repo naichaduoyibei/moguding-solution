@@ -961,16 +961,16 @@
         },
         {
             "name": "laradocs/moguding",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laradocs/php-moguding-sdk.git",
-                "reference": "35c3ab46703e685c190952e8a7a4be583ddffe42"
+                "reference": "6264404fbc28a9b2523b51dc46385be592238740"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laradocs/php-moguding-sdk/zipball/35c3ab46703e685c190952e8a7a4be583ddffe42",
-                "reference": "35c3ab46703e685c190952e8a7a4be583ddffe42",
+                "url": "https://api.github.com/repos/laradocs/php-moguding-sdk/zipball/6264404fbc28a9b2523b51dc46385be592238740",
+                "reference": "6264404fbc28a9b2523b51dc46385be592238740",
                 "shasum": ""
             },
             "require": {
@@ -1000,9 +1000,9 @@
             "description": "蘑菇丁 SDK",
             "support": {
                 "issues": "https://github.com/laradocs/php-moguding-sdk/issues",
-                "source": "https://github.com/laradocs/php-moguding-sdk/tree/2.0.1"
+                "source": "https://github.com/laradocs/php-moguding-sdk/tree/2.0.2"
             },
-            "time": "2022-01-21T11:28:24+00:00"
+            "time": "2022-01-23T04:37:11+00:00"
         },
         {
             "name": "laravel/framework",
