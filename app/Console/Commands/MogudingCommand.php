@@ -49,7 +49,10 @@ class MogudingCommand extends Command
             throw new Exception ( '签到失败，你没有签到计划。' );
         }
         foreach ( $plans as $plan ) {
-            $factory->save ( $user [ 'token' ], $user [ 'userId' ], config ( 'moguding.province' ), config ( 'moguding.city' ), config ( 'moguding.address' ), config ( 'moguding.longitude' ), config ( 'moguding.latitude' ), config ( 'moguding.type' ), config ( 'moguding.device' ), $plan [ 'planId' ], config ( 'moguding.description' ) );
+            $data = $factory->save ( $user [ 'token' ], $user [ 'userId' ], config ( 'moguding.province' ), config ( 'moguding.city' ), config ( 'moguding.address' ), config ( 'moguding.longitude' ), config ( 'moguding.latitude' ), config ( 'moguding.type' ), config ( 'moguding.device' ), $plan [ 'planId' ], config ( 'moguding.description' ) );
+            if ( $data [ 'msg' ] !== 200 ) {
+                throw new Exception ( '考勤失败。如果你看见了这个，一定要及时提 Issues，这意味着代码需要更新了。' );
+            }
             $this->info ( '签到成功！' );
         }
     }
