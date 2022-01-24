@@ -57,8 +57,8 @@
 - DEVICE: android|ios
 - PHONE: 手机号码
 - PASSWORD: 密码
-- PROVINCE: 省(一定要写全，例如：江西省)
-- CITY: 市(一定要写全，例如：南昌市)
+- PROVINCE: 省(一定要写全，例如：江西省) 注：如果你在市辖区，直接填 xx市 即可，例如：上海市。
+- CITY: 市(一定要写全，例如：南昌市) 注：如果你在市辖区，跳过这个参数。
 - ADDRESS: 详细地址(可以登录蘑菇丁查看定位，把省和市去掉)
 - LONGITUDE: 经度
 - LATITUDE: 纬度
@@ -99,7 +99,7 @@
 
 同理，下班也是这么操作。
 
-如果有疑问或问题，可以在 [issues](https://github.com/laradocs/moguding-solution/issues) 中提出。
+如果有疑问或问题，可以在 [Issues](https://github.com/laradocs/moguding-solution/issues) 中提出。
 
 ## 常见问题
 
