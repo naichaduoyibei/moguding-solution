@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24224f78db791e65afee4826d087b338",
+    "content-hash": "f03ea54c369d813e0db01dde3f43b71f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -961,16 +961,16 @@
         },
         {
             "name": "laradocs/moguding",
-            "version": "dev-master",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laradocs/php-moguding-sdk.git",
-                "reference": "1f3d0040c09697878358ffccce7a8c3a7a27f4eb"
+                "reference": "a774b055ff9777310f7a126918a863d62589aa66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laradocs/php-moguding-sdk/zipball/1f3d0040c09697878358ffccce7a8c3a7a27f4eb",
-                "reference": "1f3d0040c09697878358ffccce7a8c3a7a27f4eb",
+                "url": "https://api.github.com/repos/laradocs/php-moguding-sdk/zipball/a774b055ff9777310f7a126918a863d62589aa66",
+                "reference": "a774b055ff9777310f7a126918a863d62589aa66",
                 "shasum": ""
             },
             "require": {
@@ -981,7 +981,6 @@
                 "mockery/mockery": "^1.4",
                 "phpunit/phpunit": "^9.5"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1001,9 +1000,9 @@
             "description": "蘑菇丁 SDK",
             "support": {
                 "issues": "https://github.com/laradocs/php-moguding-sdk/issues",
-                "source": "https://github.com/laradocs/php-moguding-sdk/tree/2.0.4"
+                "source": "https://github.com/laradocs/php-moguding-sdk/tree/2.0.5"
             },
-            "time": "2022-01-24T09:39:21+00:00"
+            "time": "2022-01-24T10:00:08+00:00"
         },
         {
             "name": "laravel/framework",
@@ -7934,9 +7933,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "laradocs/moguding": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
