@@ -63,6 +63,9 @@
 - LONGITUDE: 经度
 - LATITUDE: 纬度
 
+
+- DESCRIPTION: 备注(非必填)
+
 如果你不知道经纬度
 
 可以打开这个网站：[经纬度查询 - 坐标拾取系统](https://jingweidu.bmcx.com)
@@ -71,8 +74,24 @@
 
 填写完成后点击 `Add secret` 按钮即可。
 
+然后重复上述操作全部添加即可。
+
 ![Moguding](public/images/new-repository-secret.png)
 ![add](public/images/add.png)
+
+> 新功能：使用 [Server 酱](https://sct.ftqq.com) 做消息推送
+
+点击 [Server 酱](https://sct.ftqq.com) 进入 Server 酱官方网站
+
+然后点击 SendKey「需要登录」
+
+微信扫码登录之后复制 `SendKey`
+
+然后接着添加 `Secrets`，参数如下：
+
+- SENDKEY: 刚才复制的 `SendKey` (非必填：不填表示不使用 Server 酱推送消息)
+
+Done!
 
 5. 启用 Actions
 

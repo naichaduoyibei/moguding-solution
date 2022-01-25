@@ -53,7 +53,12 @@ class MogudingCommand extends Command
             if ( empty ( $data ) ) {
                 throw new Exception ( '考勤失败。如果你看见了这个，一定要及时提 Issues，这意味着代码需要更新了。' );
             }
-            $this->info ( '签到成功！' );
+            $factory->sctSend (
+                config ( 'moguding.sct.key' ),
+                sprintf ( '%s %s %s', '蘑菇丁', ( ( config ( 'moguding.type' ) === 'START' ) ? '上班' : '下班' ), '打卡成功！' ),
+                sprintf ( '%s%s%s', config ( 'moguding.province' ), ( config ( 'moguding.city' ) ?? '' ), config ( 'moguding.address' ) )
+            );
+            $this->info ( '打卡成功！' );
         }
     }
 }

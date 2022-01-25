@@ -14,17 +14,18 @@ jobs:
 
       - name: Install dependencies
         run: composer install --optimize-autoloader --no-dev
-        
+
       - name: Run sign
-        env: 
-            MOGUDING_DEVICE: ${{ secrets.Device }}
-            MOGUDING_PHONE: ${{ secrets.Phone }}
-            MOGUDING_PASSWORD: ${{ secrets.Password }}
-            MOGUDING_PROVINCE: ${{ secrets.Province }}
-            MOGUDING_CITY: ${{ secrets.City }}
-            MOGUDING_ADDRESS: ${{ secrets.Address }}
-            MOGUDING_LONGITUDE: ${{ secrets.Longitude }}
-            MOGUDING_LATITUDE: ${{ secrets.Latitude }}
-            MOGUDING_TYPE: "START"
-            MOGUDING_DESCRIPTION: ${{ secrets.Description }}
+        env:
+          MOGUDING_DEVICE: ${{ secrets.DEVICE }}
+          MOGUDING_PHONE: ${{ secrets.PHONE }}
+          MOGUDING_PASSWORD: ${{ secrets.PASSWORD }}
+          MOGUDING_PROVINCE: ${{ secrets.PROVINCE }}
+          MOGUDING_CITY: ${{ secrets.CITY }}
+          MOGUDING_ADDRESS: ${{ secrets.ADDRESS }}
+          MOGUDING_LONGITUDE: ${{ secrets.LONGITUDE }}
+          MOGUDING_LATITUDE: ${{ secrets.LATITUDE }}
+          MOGUDING_TYPE: "START"
+          MOGUDING_DESCRIPTION: ${{ secrets.DESCRIPTION }},
+          MOGUDING_SCT_KEY: ${{ secrets.SENDKEY }}
         run: php artisan moguding

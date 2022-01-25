@@ -12,4 +12,8 @@ return [
     'latitude' => env ( 'MOGUDING_LATITUDE', '' ),
     'type' => env ( 'MOGUDING_TYPE', '' ),
     'description' => env ( 'MOGUDING_DESCRIPTION', '' ),
+
+    'sct' => [
+        'key' => env ( 'MOGUDING_SCT_KEY', '' ),
+    ],
 ];
