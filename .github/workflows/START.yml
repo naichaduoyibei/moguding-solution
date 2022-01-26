@@ -26,6 +26,6 @@ jobs:
           MOGUDING_LONGITUDE: ${{ secrets.LONGITUDE }}
           MOGUDING_LATITUDE: ${{ secrets.LATITUDE }}
           MOGUDING_TYPE: "START"
-          MOGUDING_DESCRIPTION: ${{ secrets.DESCRIPTION }},
+          MOGUDING_DESCRIPTION: ${{ secrets.DESCRIPTION }}
           MOGUDING_SCT_KEY: ${{ secrets.SENDKEY }}
         run: php artisan moguding
