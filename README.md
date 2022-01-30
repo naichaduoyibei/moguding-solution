@@ -58,29 +58,17 @@
 7. 点击 `Run workflow`
 8. 点击 `Run workflow`（绿色）
 
-刷新网页之后你会看见 <svg width="16px" height="16px" fill="none" viewBox="0 0 16 16" class="anim-rotate" xmlns="http://www.w3.org/2000/svg">
-<path opacity=".5" d="M8 15A7 7 0 108 1a7 7 0 000 14v0z" stroke="#dbab0a" stroke-width="2"></path>
-<path d="M15 8a7 7 0 01-7 7" stroke="#dbab0a" stroke-width="2"></path>
-<path d="M8 12a4 4 0 100-8 4 4 0 000 8z" fill="#dbab0a"></path>
-</svg> 上班 或 <svg width="15px" height="15px" fill="none" viewBox="0 0 16 16" class="anim-rotate" xmlns="http://www.w3.org/2000/svg">
-<path opacity=".5" d="M8 15A7 7 0 108 1a7 7 0 000 14v0z" stroke="#dbab0a" stroke-width="2"></path>
-<path d="M15 8a7 7 0 01-7 7" stroke="#dbab0a" stroke-width="2"></path>
-<path d="M8 12a4 4 0 100-8 4 4 0 000 8z" fill="#dbab0a"></path>
-</svg> 下班
+刷新网页之后你会看见 (棕色图标)上班 或 (棕色图标)下班
 
-喝杯咖啡等待一会，直到 <svg width="16px" height="16px" fill="none" viewBox="0 0 16 16" class="anim-rotate" xmlns="http://www.w3.org/2000/svg">
-<path opacity=".5" d="M8 15A7 7 0 108 1a7 7 0 000 14v0z" stroke="#dbab0a" stroke-width="2"></path>
-<path d="M15 8a7 7 0 01-7 7" stroke="#dbab0a" stroke-width="2"></path>
-<path d="M8 12a4 4 0 100-8 4 4 0 000 8z" fill="#dbab0a"></path>
-</svg> 变成 <svg width="16px" height="16px" class="octicon octicon-check-circle-fill color-fg-success" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8 16A8 8 0 108 0a8 8 0 000 16zm3.78-9.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
+喝杯咖啡等待一会，直到 (棕色图标) 变成 (绿色图标)
 
-如果你看见的是 <svg width="16px" height="16px" class="octicon octicon-x-circle-fill color-fg-danger" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"></path></svg>
+如果你看见的是 (红色图标)
 
 请点进去查看原因：
 
 1. 点击 `上班` 或 `下班`
 2. 点击 `build`
-3. 点击 <svg width="16px" height="16px" class="octicon octicon-x-circle-fill color-fg-danger" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"></path></svg> Run sign
+3. 点击 `(红色图标)Run sign`
 
 然后再转到 [常见问题](#faq) 查找原因。
 
@@ -116,6 +104,8 @@ cp .env.example .env
 ```
 cd moguding && php artisan moguding
 ```
+
+11. 点击 `添加任务`
 
 <a name="message-push"></a>
 ## 消息推送
