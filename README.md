@@ -34,7 +34,7 @@
 
 > Note: 推荐使用 `Ctrl` + `F` 进行搜索
 
-1. 将此项目 `fork` 到自己的仓库
+1. 点击 `fork` 将此项目克隆到你自己的仓库
 2. 点击 `Settings` -> `Secrets` -> `Actions` -> `New repository secret`
 3. 填写 `Name` 和 `Value`（见下方 参数列表）
 4. 点击 `Add secret`
