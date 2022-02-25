@@ -40,16 +40,36 @@ class MogudingCommand extends Command
     public function handle()
     {
         $factory = new Client();
-        $user = $factory->login ( config ( 'moguding.device' ), config ( 'moguding.phone' ), config ( 'moguding.password' ) );
+        $user = $factory->login (
+            config ( 'moguding.device' ),
+            config ( 'moguding.phone' ),
+            config ( 'moguding.password' )
+        );
         if ( empty ( $user ) ) {
             throw new Exception ( '签到失败，用户名或密码错误。' );
         }
-        $plans = $factory->getPlan ( $user [ 'token' ], $user [ 'userType' ], $user [ 'userId' ] );
+        $plans = $factory->getPlan (
+            $user [ 'token' ],
+            $user [ 'userType' ],
+            $user [ 'userId' ]
+        );
         if ( empty ( $plans ) ) {
             throw new Exception ( '签到失败，你没有签到计划。' );
         }
         foreach ( $plans as $plan ) {
-            $data = $factory->save ( $user [ 'token' ], $user [ 'userId' ], config ( 'moguding.province' ), config ( 'moguding.city' ), config ( 'moguding.address' ), config ( 'moguding.longitude' ), config ( 'moguding.latitude' ), config ( 'moguding.type' ), config ( 'moguding.device' ), $plan [ 'planId' ], config ( 'moguding.description' ) );
+            $data = $factory->save (
+                $user [ 'token' ],
+                $user [ 'userId' ],
+                config ( 'moguding.province' ),
+                config ( 'moguding.city' ),
+                config ( 'moguding.address' ),
+                config ( 'moguding.longitude' ),
+                config ( 'moguding.latitude' ),
+                config ( 'moguding.type' ),
+                config ( 'moguding.device' ),
+                $plan [ 'planId' ],
+                config ( 'moguding.description' )
+            );
             if ( empty ( $data ) ) {
                 throw new Exception ( '考勤失败。如果你看见了这个，一定要及时提 Issues，这意味着代码需要更新了。' );
             }

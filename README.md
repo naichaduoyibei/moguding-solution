@@ -5,7 +5,7 @@
 - [特性](#peculiarity)
 - [用法](#usage)
     - [GitHub Actions 部署（推荐）](#github-actions)
-    - [宝塔计划任务部署](#bt-tesk)
+    - [宝塔计划任务部署](#bt-task)
 - [消息推送](#message-push)
     - [Server 酱](#server-sct)
 - [常见问题](#faq)
