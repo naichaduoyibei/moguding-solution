@@ -5,6 +5,7 @@
 - [特性](#peculiarity)
 - [用法](#usage)
     - [GitHub Actions 部署（推荐）](#github-actions)
+    - [本地部署](#local)
     - [宝塔计划任务部署](#bt-task)
 - [消息推送](#message-push)
     - [Server 酱](#server-sct)
@@ -72,6 +73,43 @@
 
 然后再转到 [常见问题](#faq) 查找原因。
 
+<a name="local"></a>
+### 本地部署
+
+1. 运行以下命令将此项目 `clone` 到本地
+```bash
+git clone git@github.com:laradocs/moguding-solution.git moguding
+```
+
+2. 使用以下命令进入 moguding 文件夹
+```bash
+cd moguding
+```
+
+3. 执行以下命令安装需要的依赖
+```bash
+composer update -oW
+```
+
+4. 使用以下命令复制 .env.example 文件
+
+Linux / MacOS:
+```bash
+cp .env.example .env
+```
+
+Windows:
+```bash
+copy .env.example .env
+```
+
+5. 打开 `.env` 文件填写相关配置
+
+6. 最后运行以下命令即可
+```bash
+php artisan moguding
+```
+
 <a name="bt-task"></a>
 ### 宝塔计划任务部署
 
@@ -82,6 +120,7 @@
 git clone git@github.com:laradocs/moguding-solution.git moguding
 ```
 2. 把 moguding 文件夹 进行压缩
+
 3. 把 `压缩包` 上传到服务器 `根目录`（你也可以上传到你能找到的目录）
 4. 将 `压缩包` 解压至当前目录（我这里是 `根目录`）
 5. 使用以下命令切换到 `moguding` 目录
@@ -90,13 +129,14 @@ cd moguding
 ```
 6. 执行以下命令安装需要的依赖
 ```
-composer install
+composer update -oW
 ```
+
 7. 执行以下命令生成配置文件
 ```
 cp .env.example .env
 ```
-8. 打开 `.env` 文件翻到最下面填写相关配置
+8. 打开 `.env` 文件填写相关配置
 9. 点击 `计划任务`
 10. 填写 `任务名称` -> `执行周期` -> `脚本内容`
 
@@ -144,6 +184,6 @@ In CurlFactory.php line 210:
 Error: Process completed with exit code 1.
 ```
 
-如果出现了上面的字样，那么就把当前的 `workflow` 删除后重新执行。
+如果出现了上面的字样，重新执行 `workflow` 即可。
 
-暂时还没找到具体原因，有可能是 IP 不稳定所导致。
+如果有其他问题，请及时在 [Issues](https://github.com/laradocs/moguding-solution/issues) 提出。

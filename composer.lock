@@ -959,16 +959,16 @@
         },
         {
             "name": "laradocs/moguding",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laradocs/php-moguding-sdk.git",
-                "reference": "877d3e4df2aa93ed08d62eb1881e60e41d81c617"
+                "reference": "f3ed71e55696de5e6ee077d4bfe22afa301e245a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laradocs/php-moguding-sdk/zipball/877d3e4df2aa93ed08d62eb1881e60e41d81c617",
-                "reference": "877d3e4df2aa93ed08d62eb1881e60e41d81c617",
+                "url": "https://api.github.com/repos/laradocs/php-moguding-sdk/zipball/f3ed71e55696de5e6ee077d4bfe22afa301e245a",
+                "reference": "f3ed71e55696de5e6ee077d4bfe22afa301e245a",
                 "shasum": ""
             },
             "require": {
@@ -998,9 +998,9 @@
             "description": "蘑菇丁 SDK",
             "support": {
                 "issues": "https://github.com/laradocs/php-moguding-sdk/issues",
-                "source": "https://github.com/laradocs/php-moguding-sdk/tree/2.1.0"
+                "source": "https://github.com/laradocs/php-moguding-sdk/tree/2.1.1"
             },
-            "time": "2022-01-25T07:45:37+00:00"
+            "time": "2022-02-25T16:13:18+00:00"
         },
         {
             "name": "laravel/framework",
@@ -3796,12 +3796,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Ctype\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4845,12 +4845,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\String\\": ""
-                },
                 "files": [
                     "Resources/functions.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Component\\String\\": ""
+                },
                 "exclude-from-classmap": [
                     "/Tests/"
                 ]
