@@ -29,18 +29,3 @@ jobs:
           MOGUDING_DESCRIPTION: ${{ secrets.DESCRIPTION }}
           MOGUDING_SCT_KEY: ${{ secrets.SENDKEY }}
         run: php artisan moguding
-      - id: timestamp
-        run: echo "::set-output name=timestamp::$(timestamp +%s)"
-      - name: Restore the previous run result
-        uses: actions/cache@v2
-        with:
-         path: |
-           run_result
-         key: ${{ github.run_id }}-${{ github.job }}-${{ steps.timestamp.outputs.timestamp }}
-         restore-keys: |
-           ${{ github.run_id }}-${{ github.job }}-
-      - id: run_result
-        run: cat run_result 2>/dev/null || echo 'default'
-      - uses: actions/checkout@v2
-        if: steps.run_result.outputs.run_result != 'success'
-      - run: echo "::set-output name=run_result::success" > run_result
