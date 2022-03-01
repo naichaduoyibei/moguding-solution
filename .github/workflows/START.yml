@@ -29,6 +29,6 @@ jobs:
           MOGUDING_DESCRIPTION: ${{ secrets.DESCRIPTION }}
           MOGUDING_SCT_KEY: ${{ secrets.SENDKEY }}
         run: php artisan moguding
-      - name: Restore run workflow
-        if: ${{ failure() }}
-        run: jobs
+      - name: Re-run run workflow
+        runs-on: ubuntu-latest
+
