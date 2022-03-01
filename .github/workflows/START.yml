@@ -31,4 +31,4 @@ jobs:
         run: php artisan moguding
       - name: Restore run workflow
         if: ${{ failure() }}
-        run: php artisan moguding
+        run: jobs
