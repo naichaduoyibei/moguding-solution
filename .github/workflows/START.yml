@@ -29,7 +29,3 @@ jobs:
           MOGUDING_DESCRIPTION: ${{ secrets.DESCRIPTION }}
           MOGUDING_SCT_KEY: ${{ secrets.SENDKEY }}
         run: php artisan moguding
-      - name: Re-run workflow job
-        if: ${{ failure() }}
-        steps:
-          - uses: actions/checkout@v2
