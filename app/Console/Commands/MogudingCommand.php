@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use Exception;
 use Illuminate\Console\Command;
 use Laradocs\Moguding\Client;
+use Laradocs\Moguding\Exceptions\RequestTimeoutException;
+use Laradocs\Moguding\Exceptions\UnauthenticatedException;
 
 class MogudingCommand extends Command
 {
@@ -40,36 +42,49 @@ class MogudingCommand extends Command
     public function handle()
     {
         $factory = new Client();
-        $user = $factory->login(
-            config('moguding.device'),
-            config('moguding.phone'),
-            config('moguding.password')
-        );
-        if (empty ($user)) {
-            throw new Exception ('签到失败，用户名或密码错误。');
+        try {
+            $user = $factory->login(
+                config('moguding.device'),
+                config('moguding.phone'),
+                config('moguding.password')
+            );
+        } catch (UnauthenticatedException|RequestTimeoutException $e) {
+            throw new Exception($e->getMessage());
         }
-        $plans = $factory->getPlan(
-            $user ['token'],
-            $user ['userType'],
-            $user ['userId']
-        );
+
+        try {
+            $plans = $factory->getPlan(
+                $user ['token'],
+                $user ['userType'],
+                $user ['userId']
+            );
+        } catch (UnauthenticatedException|RequestTimeoutException $e) {
+            throw new Exception ($e->getMessage());
+        }
+
         if (empty ($plans)) {
             throw new Exception ('签到失败，你没有签到计划。');
         }
+
         foreach ($plans as $plan) {
-            $data = $factory->save(
-                $user ['token'],
-                $user ['userId'],
-                config('moguding.province'),
-                config('moguding.city'),
-                config('moguding.address'),
-                config('moguding.longitude'),
-                config('moguding.latitude'),
-                config('moguding.type'),
-                config('moguding.device'),
-                $plan ['planId'],
-                config('moguding.description')
-            );
+            try {
+                $data = $factory->save(
+                    $user ['token'],
+                    $user ['userId'],
+                    config('moguding.province'),
+                    config('moguding.city'),
+                    config('moguding.address'),
+                    config('moguding.longitude'),
+                    config('moguding.latitude'),
+                    config('moguding.type'),
+                    config('moguding.device'),
+                    $plan ['planId'],
+                    config('moguding.description')
+                );
+            } catch (UnauthenticatedException|RequestTimeoutException $e) {
+                throw new Exception ($e->getMessage());
+            }
+
             if (empty ($data)) {
                 throw new Exception ('考勤失败。如果你看见了这个，一定要及时提 Issues，这意味着代码需要更新了。');
             }
