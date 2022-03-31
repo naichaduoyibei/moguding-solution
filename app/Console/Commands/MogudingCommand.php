@@ -42,57 +42,51 @@ class MogudingCommand extends Command
     public function handle()
     {
         $factory = new Client();
-        try {
-            $user = $factory->login(
-                config('moguding.device'),
-                config('moguding.phone'),
-                config('moguding.password')
-            );
-        } catch (UnauthenticatedException|RequestTimeoutException $e) {
-            throw new Exception($e->getMessage());
-        }
 
-        try {
-            $plans = $factory->getPlan(
-                $user ['token'],
-                $user ['userType'],
-                $user ['userId']
-            );
-        } catch (UnauthenticatedException|RequestTimeoutException $e) {
-            throw new Exception ($e->getMessage());
-        }
+        $loginParams = [
+            config('moguding.device'),
+            config('moguding.phone'),
+            config('moguding.password')
+        ];
 
-        if (empty ($plans)) {
-            throw new Exception ('签到失败，你没有签到计划。');
-        }
+        $user = $factory->login(...$loginParams);
+
+
+        $getPlanParams = [
+            $user ['token'],
+            $user ['userType'],
+            $user ['userId']
+        ];
+
+        $plans = $factory->getPlan(...$getPlanParams);
+
+        $plans ?: throw new Exception ('签到失败，你没有签到计划。');
+
+        $params = [
+            $user ['token'],
+            $user ['userId'],
+            config('moguding.province'),
+            config('moguding.city'),
+            config('moguding.address'),
+            config('moguding.longitude'),
+            config('moguding.latitude'),
+            config('moguding.type'),
+            config('moguding.device'),
+            $plan ['planId'],
+            config('moguding.description')
+        ];
 
         foreach ($plans as $plan) {
-            try {
-                $data = $factory->save(
-                    $user ['token'],
-                    $user ['userId'],
-                    config('moguding.province'),
-                    config('moguding.city'),
-                    config('moguding.address'),
-                    config('moguding.longitude'),
-                    config('moguding.latitude'),
-                    config('moguding.type'),
-                    config('moguding.device'),
-                    $plan ['planId'],
-                    config('moguding.description')
-                );
-            } catch (UnauthenticatedException|RequestTimeoutException $e) {
-                throw new Exception ($e->getMessage());
-            }
+            $data = $factory->save(...$params);
 
-            if (empty ($data)) {
-                throw new Exception ('考勤失败。如果你看见了这个，一定要及时提 Issues，这意味着代码需要更新了。');
-            }
+            $data ?: throw new Exception ('考勤失败。如果你看见了这个，一定要及时提 Issues，这意味着代码需要更新了。');
+            
             $factory->sctSend(
                 config('moguding.sct.key'),
                 sprintf('%s %s %s', '蘑菇丁', ((config('moguding.type') === 'START') ? '上班' : '下班'), '打卡成功！'),
                 sprintf('%s%s%s', config('moguding.province'), (config('moguding.city') ?? ''), config('moguding.address'))
             );
+
             $this->info('打卡成功！');
         }
     }
