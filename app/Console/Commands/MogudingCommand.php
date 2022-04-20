@@ -83,14 +83,18 @@ class MogudingCommand extends Command
             $data = $this->save(...$parameters);
             unset($parameters);
         }
+        $this->info("[{$data['createTime']}] 签到成功！");
         $parameters = [
             config('moguding.sct.key'),
-            "[{$data['createTime']}] 打卡成功",
+            "[{$data['createTime']}] 签到成功",
             config('moguding.country') . config('moguding.province') . config('moguding.city') . config('moguding.address')
         ];
-        $this->sct(...$parameters);
+        try {
+            $this->notification->sct(...$parameters);
+        } catch (SendKeyInvalidException) {
+            $this->warn('[Server 酱] 超过当天的发送次数限制 或 SendKey 配置失效。');
+        }
         unset($parameters);
-        $this->info("[{$data['createTime']}] 签到成功！");
     }
 
     protected function login(string $device, string $phone, string $password): array
@@ -130,14 +134,5 @@ class MogudingCommand extends Command
         }
 
         return $data;
-    }
-
-    protected function sct(?string $sendKey = null, ?string $title = null, ?string $desp = null): void
-    {
-        try {
-            $this->notification->sct($sendKey, $title, $desp);
-        } catch (SendKeyInvalidException) {
-            $this->warn('SendKey 配置错误。');
-        }
     }
 }
