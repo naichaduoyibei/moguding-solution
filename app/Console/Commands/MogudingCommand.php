@@ -3,12 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Laradocs\Moguding\Client;
-use Laradocs\Moguding\Exceptions\RequestTimeoutException;
-use Laradocs\Moguding\Exceptions\SendKeyInvalidException;
-use Laradocs\Moguding\Exceptions\UnauthenticatedException;
 use Laradocs\Moguding\Extensions\Notification;
 use Exception;
+use Laradocs\Moguding\MogudingManager;
 
 class MogudingCommand extends Command
 {
@@ -26,7 +23,7 @@ class MogudingCommand extends Command
      */
     protected $description = '蘑菇丁自动签到';
 
-    protected Client $factory;
+    protected MogudingManager $manager;
 
     protected Notification $notification;
 
@@ -35,11 +32,12 @@ class MogudingCommand extends Command
      *
      * @return void
      */
-    public function __construct(Client $factory, Notification $notification)
+    public function __construct(MogudingManager $manager, Notification $notification)
     {
-        $this->factory = $factory;
-        $this->notification = $notification;
         parent::__construct();
+
+        $this->manager = $manager;
+        $this->notification = $notification;
     }
 
     /**
@@ -87,12 +85,18 @@ class MogudingCommand extends Command
         $parameters = [
             config('moguding.sct.key'),
             "[{$data['createTime']}] 签到成功",
-            config('moguding.country') . config('moguding.province') . config('moguding.city') . config('moguding.address')
+            sprintf(
+                '%s%s%s%s',
+                config('moguding.country'),
+                config('moguding.province'),
+                config('moguding.city'),
+                config('moguding.address')
+            )
         ];
         try {
             $this->notification->sct(...$parameters);
-        } catch (SendKeyInvalidException) {
-            $this->warn('[Server 酱] 超过当天的发送次数限制 或 SendKey 配置失效。');
+        } catch (Exception $e) {
+            $this->warn('[Server 酱] 超过当天的发送次数限制 或 SendKey 配置无效。');
         }
         unset($parameters);
     }
@@ -100,11 +104,14 @@ class MogudingCommand extends Command
     protected function login(string $device, string $phone, string $password): array
     {
         try {
-            $user = $this->factory->login($device, $phone, $password);
-        } catch (RequestTimeoutException) {
-            $this->login($device, $phone, $password);
-        } catch (UnauthenticatedException $e) {
-            throw new Exception($e->getMessage());
+            $user = $this->manager->login($device, $phone, $password);
+        } catch (Exception $e) {
+            $message = '请求超时！';
+            if ($getMessage = $e->getMessage()) {
+                $message = $getMessage;
+            }
+
+            throw new Exception($message);
         }
 
         return $user;
@@ -113,11 +120,14 @@ class MogudingCommand extends Command
     protected function plans(string $token, string $userType, int $userId): array
     {
         try {
-            $plans = $this->factory->getPlan($token, $userType, $userId);
-        } catch (RequestTimeoutException) {
-            $this->plans($token, $userType, $userId);
-        } catch (UnauthenticatedException $e) {
-            throw new Exception($e->getMessage());
+            $plans = $this->manager->getPlan($token, $userType, $userId);
+        } catch (Exception $e) {
+            $message = '请求超时！';
+            if ($getMessage = $e->getMessage()) {
+                $message = $getMessage;
+            }
+
+            throw new Exception($message);
         }
 
         return $plans;
@@ -126,11 +136,14 @@ class MogudingCommand extends Command
     protected function save(string $token, int $userId, string $province, ?string $city, string $address, float $longitude, float $latitude, string $type, string $device, string $planId, ?string $description = null, string $country = '中国'): array
     {
         try {
-            $data = $this->factory->save($token, $userId, $province, $city, $address, $longitude, $latitude, $type, $device, $planId, $description, $country);
-        } catch (RequestTimeoutException) {
-            $this->save($token, $userId, $province, $city, $address, $longitude, $latitude, $type, $device, $planId, $description, $country);
-        } catch (UnauthenticatedException $e) {
-            throw new Exception($e->getMessage());
+            $data = $this->manager->save($token, $userId, $province, $city, $address, $longitude, $latitude, $type, $device, $planId, $description, $country);
+        } catch (Exception $e) {
+            $message = '请求超时！';
+            if ($getMessage = $e->getMessage()) {
+                $message = $getMessage;
+            }
+
+            throw new Exception($message);
         }
 
         return $data;
