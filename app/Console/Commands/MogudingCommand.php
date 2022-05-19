@@ -106,12 +106,7 @@ class MogudingCommand extends Command
         try {
             $user = $this->manager->login($device, $phone, $password);
         } catch (Exception $e) {
-            $message = '请求超时！';
-            if ($getMessage = $e->getMessage()) {
-                $message = $getMessage;
-            }
-
-            throw new Exception($message);
+            throw new Exception($e->getMessage() ?: '请求超时！');
         }
 
         return $user;
@@ -122,12 +117,7 @@ class MogudingCommand extends Command
         try {
             $plans = $this->manager->getPlan($token, $userType, $userId);
         } catch (Exception $e) {
-            $message = '请求超时！';
-            if ($getMessage = $e->getMessage()) {
-                $message = $getMessage;
-            }
-
-            throw new Exception($message);
+            throw new Exception($e->getMessage() ?: '请求超时！');
         }
 
         return $plans;
@@ -138,12 +128,7 @@ class MogudingCommand extends Command
         try {
             $data = $this->manager->save($token, $userId, $province, $city, $address, $longitude, $latitude, $type, $device, $planId, $description, $country);
         } catch (Exception $e) {
-            $message = '请求超时！';
-            if ($getMessage = $e->getMessage()) {
-                $message = $getMessage;
-            }
-
-            throw new Exception($message);
+            throw new Exception($e->getMessage() ?: '请求超时！');
         }
 
         return $data;
