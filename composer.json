@@ -8,7 +8,7 @@
         "php": "^8.0.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
-        "laradocs/moguding": "^2.3",
+        "laradocs/moguding": "^3.0",
         "laravel/framework": "^9.5",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5"

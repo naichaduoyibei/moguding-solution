@@ -1,5 +1,6 @@
 # 🍄蘑菇丁/自动签到解决方案
 
+- [交流](#comminicate)
 - [依赖](#depend)
 - [功能](#feature)
 - [特性](#peculiarity)
@@ -10,6 +11,11 @@
 - [消息推送](#message-push)
     - [Server 酱](#server-sct)
 - [常见问题](#faq)
+
+<a name="comminicate"></a>
+## 交流
+
+[交流群](https://qm.qq.com/cgi-bin/qm/qr?k=zbymM6W3sUh11Sjx9ZVDo8vbwL2YpWkL&jump_from=webapi) ID: 253228619
 
 <a name="depend"></a>
 ## 依赖
@@ -88,7 +94,7 @@ cd moguding
 
 3. 执行以下命令安装需要的依赖
 ```bash
-composer update -oW
+composer install
 ```
 
 4. 使用以下命令复制 .env.example 文件
@@ -129,7 +135,7 @@ cd moguding
 ```
 6. 执行以下命令安装需要的依赖
 ```
-composer update -oW
+composer install
 ```
 
 7. 执行以下命令生成配置文件
