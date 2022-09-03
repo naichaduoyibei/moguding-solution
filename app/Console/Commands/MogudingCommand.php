@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Exception;
 use Laradocs\Moguding\Exceptions\SendKeyInvalidException;
@@ -14,6 +15,7 @@ use Laradocs\Moguding\Params\SaveParam;
 use Laradocs\Moguding\Params\User;
 use Laradocs\Moguding\Params\UserParam;
 use Laradocs\Moguding\Plugins\ServerChan;
+use Laradocs\Moguding\Utils\Json;
 
 class MogudingCommand extends Command
 {
@@ -50,20 +52,28 @@ class MogudingCommand extends Command
     {
         $moguding = new Moguding();
 
-        $this->info('正在获取用户信息...');
-
-        // 获取用户信息
+        $this->info('正在登录...');
         try {
-            $user = $moguding->getUserProfile(new LoginParam(
-                new Login(
-                    config('moguding.device'),
-                    config('moguding.phone'),
-                    config('moguding.password')
-                )
-            ));
+            $data = (new Client())
+                ->post('https://api.moguding.net:9000/session/user/v3/login', [
+                    'json' => [
+                        't' => bin2hex(openssl_encrypt((int)(microtime(true) * 1000), 'AES-128-ECB', '23DbtQHR2UMbH6mJ', OPENSSL_PKCS1_PADDING)),
+                        'loginType' => config('moguding.device'),
+                        'phone' => bin2hex(openssl_encrypt(config('moguding.phone'), 'AES-128-ECB', '23DbtQHR2UMbH6mJ', OPENSSL_PKCS1_PADDING)),
+                        'password' => bin2hex(openssl_encrypt(config('moguding.password'), 'AES-128-ECB', '23DbtQHR2UMbH6mJ', OPENSSL_PKCS1_PADDING)),
+                    ]
+                ])
+                ->getBody()
+                ->getContents();
+            $user = Json::decode($data)['data'];
         } catch (Exception $e) {
             throw new Exception($e->getMessage() ?: '请求超时', $e->getCode(), $e);
         }
+
+        $this->info('登录成功！');
+
+        $this->info('正在获取用户信息...');
+
         $this->info('获取用户信息成功！');
 
         $this->info('正在获取计划列表...');
