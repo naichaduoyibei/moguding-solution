@@ -67,7 +67,7 @@ class MogudingCommand extends Command
                 ->getContents();
             $user = Json::decode($data)['data'];
         } catch (Exception $e) {
-            throw new Exception($e->getMessage() ?: '请求超时', $e->getCode(), $e);
+            throw new Exception($e->getMessage() ?? '请求超时', $e->getCode(), $e);
         }
 
         $this->info('登录成功！');
@@ -87,7 +87,7 @@ class MogudingCommand extends Command
                 )
             ));
         } catch (Exception $e) {
-            throw new Exception($e->getMessage() ?: '请求超时', $e->getCode(), $e);
+            throw new Exception($e->getMessage() ?? '请求超时', $e->getCode(), $e);
         }
         $this->info('获取用户信息成功！');
 
