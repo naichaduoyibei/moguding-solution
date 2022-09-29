@@ -54,7 +54,7 @@ class MogudingCommand extends Command
 
         $this->info('正在登录...');
         try {
-            $data = (new Client())
+            $response = (new Client())
                 ->post('https://api.moguding.net:9000/session/user/v3/login', [
                     'json' => [
                         't' => bin2hex(openssl_encrypt((int)(microtime(true) * 1000), 'AES-128-ECB', '23DbtQHR2UMbH6mJ', OPENSSL_PKCS1_PADDING)),
@@ -65,7 +65,11 @@ class MogudingCommand extends Command
                 ])
                 ->getBody()
                 ->getContents();
-            $user = Json::decode($data)['data'];
+            $data = Json::decode($response);
+            if (200 != $data['code']) {
+                throw new Exception($data['msg'], $data['code']);
+            }
+            $user = $data['data'];
         } catch (Exception $e) {
             throw new Exception($e->getMessage() ?? '请求超时', $e->getCode(), $e);
         }
