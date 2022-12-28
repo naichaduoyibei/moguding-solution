@@ -15,7 +15,7 @@
 <a name="comminicate"></a>
 ## 交流
 
-[交流群](https://qm.qq.com/cgi-bin/qm/qr?k=zbymM6W3sUh11Sjx9ZVDo8vbwL2YpWkL&jump_from=webapi) ID: 253228619
+[交流群](https://qm.qq.com/cgi-bin/qm/qr?k=zbymM6W3sUh11Sjx9ZVDo8vbwL2YpWkL&jump_from=webapi) qq: 814379263
 
 <a name="depend"></a>
 ## 依赖
