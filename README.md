@@ -20,7 +20,7 @@
 <a name="depend"></a>
 ## 依赖
 
-- [php-moguding-sdk](https://github.com/laradocs/php-moguding-sdk)
+- [moguding-sdk-php](https://github.com/laradocs/moguding-sdk-php)
 
 <a name="feature"></a>
 ## 功能
